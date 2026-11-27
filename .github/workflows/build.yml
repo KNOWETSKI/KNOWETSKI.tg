@@ -28,6 +28,12 @@ jobs:
           fetch-depth: 0
           submodules: false
 
+      - name: Use fresh fake signing profiles from main
+        run: |
+          git fetch origin main
+          git checkout origin/main -- build-system/fake-codesigning
+          ls build-system/fake-codesigning
+
       - name: Fix submodule URLs for forks
         run: |
           git config --file=.gitmodules submodule.submodules/rlottie/rlottie.url \
@@ -115,20 +121,18 @@ jobs:
             /Users/runner/Library/Android || true
           df -h /
 
-      - name: Cache Bazel (warm incremental compiles)
-        uses: actions/cache@v4
+      - name: Restore Bazel cache
+        id: bazel-cache
+        uses: actions/cache/restore@v4
         with:
           path: |
             ${{ env.BAZEL_CACHE_DIR }}
             ${{ env.BAZEL_REPO_CACHE }}
-          key: bazel-warm-release_arm64-${{ hashFiles('versions.json', 'MODULE.bazel', 'MODULE.bazel.lock') }}
+          key: bazel-old-release_arm64-${{ github.run_id }}
           restore-keys: |
+            bazel-old-release_arm64-
             bazel-warm-release_arm64-
             bazel-warm-ci_arm64-
-            bazel-pm-macOS-ci_arm64-
-            bazel-turbo-macOS-ci_arm64-
-            bazel-pm-
-            bazel-turbo-
             bazel-
 
       - name: Write sideload configuration
@@ -195,6 +199,15 @@ jobs:
             --outputBuildArtifactsPath=build/artifacts \
             2>&1 | tee release-build.log
 
+      - name: Save Bazel cache
+        if: ${{ !cancelled() && steps.bazel-cache.outcome == 'success' }}
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            ${{ env.BAZEL_CACHE_DIR }}
+            ${{ env.BAZEL_REPO_CACHE }}
+          key: bazel-old-release_arm64-${{ github.run_id }}
+
       - name: Collect Make.py IPA (keep fake signature)
         run: |
           set -euo pipefail
@@ -205,7 +218,7 @@ jobs:
           ls -lh "artifacts/${IPA_NAME}"
 
       - name: Upload sideload IPA artifact
-        if: success() || failure()
+        if: success()
         uses: actions/upload-artifact@v5
         with:
           name: KNOWETSKI-TG-${{ env.APP_VERSION }}-${{ env.BUILD_NUMBER }}-sideload
