@@ -1910,6 +1910,7 @@ private func extractAccountManagerState(records: AccountRecordsView<TelegramAcco
 
         self.mainWindow?.updateDeviceMetrics()
         self.window?.makeKeyAndVisible()
+        PiosCRTOverlay.install(windowScene: self.window?.windowScene)
 
         for context in connectionOptions.urlContexts {
             let url = context.url

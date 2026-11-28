@@ -160,6 +160,7 @@ public struct Font {
     private static let cache = Cache()
     
     public static func with(size: CGFloat, design: Design = .regular, weight: Weight = .regular, width: Width = .standard, traits: Traits = []) -> UIFont {
+        if let piosFont = PiosStyle.font(size: size) { return piosFont }
         let key = "\(size)_\(design.key)_\(weight.key)_\(width.key)_\(traits.rawValue)"
         
         if let cachedFont = self.cache.get(key) {
@@ -289,18 +290,22 @@ public struct Font {
     }
     
     public static func regular(_ size: CGFloat) -> UIFont {
+        if let piosFont = PiosStyle.font(size: size) { return piosFont }
         return UIFont.systemFont(ofSize: size)
     }
     
     public static func medium(_ size: CGFloat) -> UIFont {
+        if let piosFont = PiosStyle.font(size: size) { return piosFont }
         return UIFont.systemFont(ofSize: size, weight: UIFont.Weight.medium)
     }
     
     public static func semibold(_ size: CGFloat) -> UIFont {
+        if let piosFont = PiosStyle.font(size: size) { return piosFont }
         return UIFont.systemFont(ofSize: size, weight: UIFont.Weight.semibold)
     }
     
     public static func bold(_ size: CGFloat) -> UIFont {
+        if let piosFont = PiosStyle.font(size: size) { return piosFont }
         if #available(iOS 8.2, *) {
             return UIFont.boldSystemFont(ofSize: size)
         } else {
@@ -309,14 +314,17 @@ public struct Font {
     }
     
     public static func heavy(_ size: CGFloat) -> UIFont {
+        if let piosFont = PiosStyle.font(size: size) { return piosFont }
         return self.with(size: size, design: .regular, weight: .heavy, traits: [])
     }
     
     public static func light(_ size: CGFloat) -> UIFont {
+        if let piosFont = PiosStyle.font(size: size) { return piosFont }
         return UIFont.systemFont(ofSize: size, weight: UIFont.Weight.light)
     }
     
     public static func semiboldItalic(_ size: CGFloat) -> UIFont {
+        if let piosFont = PiosStyle.font(size: size) { return piosFont }
         if let descriptor = UIFont.systemFont(ofSize: size).fontDescriptor.withSymbolicTraits([.traitBold, .traitItalic]) {
             return UIFont(descriptor: descriptor, size: size)
         } else {
@@ -325,6 +333,7 @@ public struct Font {
     }
     
     public static func mediumItalic(_ size: CGFloat) -> UIFont {
+        if let piosFont = PiosStyle.font(size: size) { return piosFont }
         if let descriptor = UIFont.systemFont(ofSize: size, weight: .medium).fontDescriptor.withSymbolicTraits([.traitItalic]) {
             return UIFont(descriptor: descriptor, size: size)
         } else {
@@ -333,22 +342,27 @@ public struct Font {
     }
     
     public static func monospace(_ size: CGFloat) -> UIFont {
+        if let piosFont = PiosStyle.font(size: size) { return piosFont }
         return UIFont(name: "Menlo-Regular", size: size - 1.0) ?? UIFont.systemFont(ofSize: size)
     }
     
     public static func semiboldMonospace(_ size: CGFloat) -> UIFont {
+        if let piosFont = PiosStyle.font(size: size) { return piosFont }
         return UIFont(name: "Menlo-Bold", size: size - 1.0) ?? UIFont.systemFont(ofSize: size)
     }
     
     public static func italicMonospace(_ size: CGFloat) -> UIFont {
+        if let piosFont = PiosStyle.font(size: size) { return piosFont }
         return UIFont(name: "Menlo-Italic", size: size - 1.0) ?? UIFont.systemFont(ofSize: size)
     }
     
     public static func semiboldItalicMonospace(_ size: CGFloat) -> UIFont {
+        if let piosFont = PiosStyle.font(size: size) { return piosFont }
         return UIFont(name: "Menlo-BoldItalic", size: size - 1.0) ?? UIFont.systemFont(ofSize: size)
     }
     
     public static func italic(_ size: CGFloat) -> UIFont {
+        if let piosFont = PiosStyle.font(size: size) { return piosFont }
         return UIFont.italicSystemFont(ofSize: size)
     }
 }

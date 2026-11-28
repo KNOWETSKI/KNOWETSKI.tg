@@ -1,0 +1,377 @@
+== versions.json ==
+{
+    "app": "13.0",
+    "xcode": "26.6",
+    "deploy_xcode": "26.2",
+    "bazel": "9.2.0:dd466352a3e4d3581b8898740ee1ff208866ccbe25f8d367c5dcb950219587e6",
+    "macos": "26"
+}
+
+
+== AppDelegate ==
+submodules/TelegramUI/Components/CoreList/CoreListDemo/AppDelegate.swift
+(нет совпадений 'makeKeyAndVisible|UIWindow\\(|Window1\\(' в submodules/TelegramUI/Components/CoreList/CoreListDemo/AppDelegate.swift)
+submodules/TelegramUI/Components/RichTextEditor/Demo/Sources/AppDelegate.swift
+(нет совпадений 'makeKeyAndVisible|UIWindow\\(|Window1\\(' в submodules/TelegramUI/Components/RichTextEditor/Demo/Sources/AppDelegate.swift)
+submodules/TelegramUI/Sources/AppDelegate.swift
+--- submodules/TelegramUI/Sources/AppDelegate.swift:441
+  438          let (window, hostView) = nativeWindowHostView()
+  439          let statusBarHost = ApplicationStatusBarHost(scene: window.windowScene)
+  440          self.statusBarHost = statusBarHost
+  441          self.mainWindow = Window1(hostView: hostView, statusBarHost: statusBarHost)
+  442          if let traitCollection = window.rootViewController?.traitCollection {
+  443              if #available(iOS 13.0, *) {
+  444                  switch traitCollection.userInterfaceStyle {
+  445                  case .light, .unspecified:
+  446                      hostView.containerView.backgroundColor = UIColor.white
+--- submodules/TelegramUI/Sources/AppDelegate.swift:1912
+ 1909          }
+ 1910  
+ 1911          self.mainWindow?.updateDeviceMetrics()
+ 1912          self.window?.makeKeyAndVisible()
+ 1913  
+ 1914          for context in connectionOptions.urlContexts {
+ 1915              let url = context.url
+ 1916              if let buildConfig = self.buildConfig, url.scheme == "tg" || url.scheme == "ton" || url.scheme == buildConfig.appSpecificUrlScheme || WalletContext.isTonConnectUrl(url.absoluteString) {
+ 1917                  self.openUrlWhenReady(url: url, external: true)
+Tests/AnimationCacheTest/Sources/AppDelegate.swift
+--- Tests/AnimationCacheTest/Sources/AppDelegate.swift:13
+   10      public var window: UIWindow?
+   11      
+   12      public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+   13          let window = UIWindow()
+   14          self.window = window
+   15          
+   16          window.rootViewController = ViewController()
+   17          window.makeKeyAndVisible()
+   18          
+--- Tests/AnimationCacheTest/Sources/AppDelegate.swift:17
+   14          self.window = window
+   15          
+   16          window.rootViewController = ViewController()
+   17          window.makeKeyAndVisible()
+   18          
+   19          return true
+   20      }
+   21  }
+   22  
+Tests/CallUITest/Sources/AppDelegate.swift
+--- Tests/CallUITest/Sources/AppDelegate.swift:13
+   10      public var window: UIWindow?
+   11      
+   12      public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+   13          let window = UIWindow()
+   14          self.window = window
+   15          
+   16          window.rootViewController = ViewController()
+   17          window.makeKeyAndVisible()
+   18          
+--- Tests/CallUITest/Sources/AppDelegate.swift:17
+   14          self.window = window
+   15          
+   16          window.rootViewController = ViewController()
+   17          window.makeKeyAndVisible()
+   18          
+   19          application.internalSetStatusBarStyle(.lightContent, animated: false)
+   20          
+   21          return true
+   22      }
+
+== Info.plist приложения ==
+Telegram/NotificationService/Info.plist
+--- Telegram/NotificationService/Info.plist:7
+    6  	<string>$(DEVELOPMENT_LANGUAGE)</string>
+    7  	<key>CFBundleDisplayName</key>
+    8  	<string>NotificationService</string>
+    9  	<key>CFBundleExecutable</key>
+   10  	<string>$(EXECUTABLE_NAME)</string>
+   11  	<key>CFBundleIdentifier</key>
+   12  	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+Telegram/Share/Info.plist
+--- Telegram/Share/Info.plist:7
+    6  	<string>en</string>
+    7  	<key>CFBundleDisplayName</key>
+    8  	<string>${APP_NAME}</string>
+    9  	<key>CFBundleExecutable</key>
+   10  	<string>$(EXECUTABLE_NAME)</string>
+   11  	<key>CFBundleIdentifier</key>
+   12  	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+Telegram/Telegram-iOS/Info.plist
+--- Telegram/Telegram-iOS/Info.plist:13
+   12  	<string>en</string>
+   13  	<key>CFBundleDisplayName</key>
+   14  	<string>BananaGram</string>
+   15  	<key>CFBundleExecutable</key>
+   16  	<string>$(EXECUTABLE_NAME)</string>
+   17  	<key>CFBundleIcons</key>
+   18  	<dict>
+--- Telegram/Telegram-iOS/Info.plist:317
+  316  	</array>
+  317  	<key>UIAppFonts</key>
+  318  	<array>
+  319  		<string>SFCompactRounded-Semibold.otf</string>
+  320  	</array>
+  321  	<key>UIBackgroundModes</key>
+  322  	<array>
+--- Telegram/Telegram-iOS/Info.plist:321
+  320  	</array>
+  321  	<key>UIBackgroundModes</key>
+  322  	<array>
+  323  		<string>audio</string>
+  324  		<string>fetch</string>
+  325  		<string>location</string>
+  326  		<string>remote-notification</string>
+Telegram/Watch/App/Info.plist
+--- Telegram/Watch/App/Info.plist:7
+    6  	<string>$(DEVELOPMENT_LANGUAGE)</string>
+    7  	<key>CFBundleDisplayName</key>
+    8  	<string>BananaGram</string>
+    9  	<key>CFBundleExecutable</key>
+   10  	<string>$(EXECUTABLE_NAME)</string>
+   11  	<key>CFBundleIdentifier</key>
+   12  	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+Telegram/Watch/Extension/Info.plist
+--- Telegram/Watch/Extension/Info.plist:7
+    6  	<string>$(DEVELOPMENT_LANGUAGE)</string>
+    7  	<key>CFBundleDisplayName</key>
+    8  	<string>$(APP_NAME)</string>
+    9  	<key>CFBundleExecutable</key>
+   10  	<string>$(EXECUTABLE_NAME)</string>
+   11  	<key>CFBundleIdentifier</key>
+   12  	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+Telegram/WatchApp/tgwatch Watch App/Info.plist
+--- Telegram/WatchApp/tgwatch Watch App/Info.plist:7
+    6  	<string>$(DEVELOPMENT_LANGUAGE)</string>
+    7  	<key>CFBundleDisplayName</key>
+    8  	<string>BananaGram</string>
+    9  	<key>CFBundleExecutable</key>
+   10  	<string>$(EXECUTABLE_NAME)</string>
+   11  	<key>CFBundleIconName</key>
+   12  	<string>AppIcon</string>
+Telegram/WidgetKitWidget/Info.plist
+--- Telegram/WidgetKitWidget/Info.plist:7
+    6  	<string>$(DEVELOPMENT_LANGUAGE)</string>
+    7  	<key>CFBundleDisplayName</key>
+    8  	<string>${APP_NAME}</string>
+    9  	<key>CFBundleExecutable</key>
+   10  	<string>$(EXECUTABLE_NAME)</string>
+   11  	<key>CFBundleIdentifier</key>
+   12  	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+
+== Telegram/BUILD: ресурсы и шрифты ==
+   24  load("@build_bazel_rules_apple//apple:resources.bzl",
+   63  load("@build_bazel_rules_apple//apple:resources.bzl",
+  160              --outData=$(location GeneratedPresentationStrings/Resources/PresentationStrings.data) \\
+  165          "GeneratedPresentationStrings/Resources/PresentationStrings.data",
+  282      name = "AppResources",
+  284          "Telegram-iOS/Resources/**/*",
+  285      ], exclude = ["Telegram-iOS/Resources/**/.*"]),
+  289      name = "AppStringResources",
+  298      name = "AppIntentVocabularyResources",
+  305      name = "InfoPlistStringResources",
+  407          ":AppResources",
+  408          ":AppIntentVocabularyResources",
+  409          ":InfoPlistStringResources",
+  410          "//submodules/LegacyComponents:LegacyComponentsResources",
+  412          "//submodules/OverlayStatusController:OverlayStatusControllerResources",
+  413          "//submodules/PasswordSetupUI:PasswordSetupUIResources",
+  415          "//submodules/PremiumUI:PremiumUIResources",
+  416          "//submodules/DrawingUI:DrawingUIResources",
+  417          "//submodules/TelegramUI:TelegramUIResources",
+  420          ":GeneratedPresentationStrings/Resources/PresentationStrings.data",
+ 1738      <key>UIAppFonts</key>
+ 1882      resources = [
+ 1894          ":AppStringResources",
+ 2068  # Actual generated localization resources for unhosted preview integration tests.
+ 2073          ":GeneratedPresentationStrings/Resources/PresentationStrings.data",
+
+== Помощник Font ==
+submodules/Display/Source/ActionSheetTextItem.swift
+--- submodules/Display/Source/ActionSheetTextItem.swift:7
+    7      public enum Font {
+    8          case `default`
+    9          case large
+   10      }
+   11      
+   12      public let title: String
+   13      public let font: Font
+   14      public let parseMarkdown: Bool
+   15      
+   16      public init(title: String, font: Font = .default, parseMarkdown: Bool = true) {
+   17          self.title = title
+   18          self.font = font
+   19          self.parseMarkdown = parseMarkdown
+   20      }
+   21      
+   22      public func node(theme: ActionSheetControllerTheme) -> ActionSheetItemNode {
+   23          let node = ActionSheetTextNode(theme: theme)
+   24          node.setItem(self)
+   25          return node
+   26      }
+   27      
+   28      public func updateNode(_ node: ActionSheetItemNode) {
+   29          guard let node = node as? ActionSheetTextNode else {
+   30              assertionFailure()
+   31              return
+   32          }
+   33          
+   34          node.setItem(self)
+   35          node.requestLayoutUpdate()
+   36      }
+   37  }
+   38  
+   39  public class ActionSheetTextNode: ActionSheetItemNode {
+   40      private let theme: ActionSheetControllerTheme
+   41      
+   42      private var item: ActionSheetTextItem?
+   43      
+   44      private let label: ImmediateTextNode
+   45      
+   46      private let accessibilityArea: AccessibilityAreaNode
+   47      
+   48      override public init(theme: ActionSheetControllerTheme) {
+   49          self.theme = theme
+   50          
+   51          self.label = ImmediateTextNode()
+   52          self.label.isUserInteractionEnabled = false
+   53          self.label.maximumNumberOfLines = 0
+   54          self.label.displaysAsynchronously = false
+   55          self.label.truncationType = .end
+   56          self.label.isAccessibilityElement = false
+   57          self.label.textAlignment = .center
+   58          
+   59          self.accessibilityArea = AccessibilityAreaNode()
+   60          self.accessibilityArea.accessibilityTraits = .staticText
+   61          
+   62          super.init(theme: theme)
+   63          
+   64          self.label.isUserInteractionEnabled = false
+   65          self.addSubnode(self.label)
+   66          
+submodules/Display/Source/Font.swift
+--- submodules/Display/Source/Font.swift:4
+    4  public struct Font {
+    5      public enum Design {
+    6          case regular
+    7          case serif
+    8          case monospace
+    9          case round
+   10          case camera
+   11          
+   12          var key: String {
+   13              switch self {
+   14              case .regular:
+   15                  return "regular"
+   16              case .serif:
+   17                  return "serif"
+   18              case .monospace:
+   19                  return "monospace"
+   20              case .round:
+   21                  return "round"
+   22              case .camera:
+   23                  return "camera"
+   24              }
+   25          }
+   26      }
+   27      
+   28      public struct Traits: OptionSet {
+   29          public var rawValue: Int32
+   30          
+   31          public init(rawValue: Int32) {
+   32              self.rawValue = rawValue
+   33          }
+   34          
+   35          public init() {
+   36              self.rawValue = 0
+   37          }
+   38          
+   39          public static let italic = Traits(rawValue: 1 << 0)
+   40          public static let monospacedNumbers = Traits(rawValue: 1 << 1)
+   41          public static let alternateDollarSign = Traits(rawValue: 1 << 2)
+   42      }
+   43      
+   44      public enum Width {
+   45          case standard
+   46          case condensed
+   47          case compressed
+   48          case expanded
+   49          
+   50          @available(iOS 16.0, *)
+   51          var width: UIFont.Width {
+   52              switch self {
+   53              case .standard:
+   54                  return .standard
+   55              case .condensed:
+   56                  return .condensed
+   57              case .compressed:
+   58                  return .compressed
+   59              case .expanded:
+   60                  return .expanded
+   61              }
+   62          }
+   63          
+
+== Темы ==
+submodules/TelegramPresentationData/Sources/DefaultDarkPresentationTheme.swift  (855 строк)
+submodules/TelegramPresentationData/Sources/DefaultDarkTintedPresentationTheme.swift  (1033 строк)
+submodules/TelegramPresentationData/Sources/DefaultDayPresentationTheme.swift  (1411 строк)
+submodules/TelegramPresentationData/Sources/MakePresentationTheme.swift  (299 строк)
+submodules/TelegramPresentationData/Sources/PresentationTheme.swift  (1680 строк)
+submodules/TelegramPresentationData/Sources/PresentationThemeCodable.swift  (2152 строк)
+submodules/TelegramPresentationData/Sources/PresentationThemeCoder.swift  (994 строк)
+submodules/TelegramPresentationData/Sources/PresentationThemeEssentialGraphics.swift  (666 строк)
+submodules/TelegramUIPreferences/Sources/PresentationThemeSettings.swift  (811 строк)
+--- submodules/TelegramPresentationData/Sources/DefaultDarkPresentationTheme.swift:349
+  348  
+  349  public func makeDefaultDarkPresentationTheme(extendingThemeReference: PresentationThemeReference? = nil, preview: Bool) -> PresentationTheme {
+  350      let rootNavigationBar = PresentationThemeRootNavigationBar(
+  351          buttonColor: UIColor(rgb: 0xffffff),
+  352          disabledButtonColor: UIColor(rgb: 0x525252),
+  353          primaryTextColor: UIColor(rgb: 0xffffff),
+  354          secondaryTextColor: UIColor(rgb: 0xffffff, alpha: 0.5),
+  355          controlColor: UIColor(rgb: 0x767676),
+  356          accentTextColor: UIColor(rgb: 0x007AFF),
+  357          blurredBackgroundColor: UIColor(rgb: 0x000000, alpha: 0.72),
+  358          opaqueBackgroundColor: UIColor(rgb: 0x000000),
+  359          separatorColor: UIColor(rgb: 0x545458, alpha: 0.8),
+  360          badgeBackgroundColor: UIColor(rgb: 0x007AFF),
+  361          badgeStrokeColor: UIColor(rgb: 0x007AFF),
+  362          badgeTextColor: UIColor(rgb: 0xffffff),
+  363          segmentedBackgroundColor: UIColor(rgb: 0xffffff, alpha: 0.11),
+  364          segmentedForegroundColor: UIColor(rgb: 0xffffff, alpha: 0.36),
+  365          segmentedTextColor: UIColor(rgb: 0xffffff),
+  366          segmentedDividerColor: UIColor(rgb: 0x505155),
+  367          clearButtonBackgroundColor: UIColor(rgb: 0xffffff, alpha: 0.1),
+  368          clearButtonForegroundColor: UIColor(rgb: 0xffffff)
+  369      )
+  370  
+  371      let rootTabBar = PresentationThemeRootTabBar(
+  372          backgroundColor: rootNavigationBar.blurredBackgroundColor,
+  373          separatorColor: UIColor(rgb: 0x545458, alpha: 0.8),
+  374          iconColor: UIColor(rgb: 0x8E8E93),
+  375          selectedIconColor: UIColor(rgb: 0x007AFF),
+  376          textColor: UIColor(rgb: 0x8E8E93),
+  377          selectedTextColor: UIColor(rgb: 0x007AFF),
+  378          badgeBackgroundColor: UIColor(rgb: 0x007AFF),
+  379          badgeStrokeColor: UIColor(rgb: 0x007AFF),
+  380          badgeTextColor: UIColor(rgb: 0xffffff)
+  381      )
+  382  
+  383      let navigationSearchBar = PresentationThemeNavigationSearchBar(
+  384          backgroundColor: UIColor(rgb: 0x000000),
+  385          accentColor: UIColor(rgb: 0x007AFF),
+  386          inputFillColor: UIColor(rgb: 0x1c1c1e),
+  387          inputTextColor: UIColor(rgb: 0xffffff),
+  388          inputPlaceholderTextColor: UIColor(rgb: 0xffffff, alpha: 0.62),
+
+== Файлы интерфейса (пути) ==
+^ChatListItem\.swift$: submodules/ChatListUI/Sources/Node/ChatListItem.swift
+^AvatarNode\.swift$: submodules/AvatarNode/Sources/AvatarNode.swift
+^TabBarNode\.swift$: submodules/TabBarUI/Sources/TabBarNode.swift
+^TabBarController\.swift$: submodules/Display/Source/TabBarController.swift, submodules/TabBarUI/Sources/TabBarController.swift
+^ChatMessageBackground\.swift$: submodules/ChatMessageBackground/Sources/ChatMessageBackground.swift
+MessageBubbleImages: submodules/TelegramPresentationData/Sources/ChatMessageBubbleImages.swift
+^ChatMessageDateHeader\.swift$: submodules/TelegramUI/Components/Chat/ChatMessageItemImpl/Sources/ChatMessageDateHeader.swift
+^ChatMessageBubbleItemNode\.swift$: submodules/TelegramUI/Components/Chat/ChatMessageBubbleItemNode/Sources/ChatMessageBubbleItemNode.swift
+^ChatMessageReplyInfoNode\.swift$: submodules/TelegramUI/Components/Chat/ChatMessageReplyInfoNode/Sources/ChatMessageReplyInfoNode.swift
+^ChatMessageDateAndStatusNode\.swift$: submodules/TelegramUI/Components/Chat/ChatMessageDateAndStatusNode/Sources/ChatMessageDateAndStatusNode.swift
